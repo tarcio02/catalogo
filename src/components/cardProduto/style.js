@@ -4,7 +4,7 @@ export const StyleCard = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 300px;
+    height: 350px;
     border-radius: 8px;
     padding: 8px;
     background-color:  #f5f5f5;
@@ -13,6 +13,7 @@ export const StyleCard = styled.div`
     button {
         border: none;
         background-color: #f0c11a;
+        color: black;
         border-radius: 8px;
         width: 100%;
         height: 30px;
