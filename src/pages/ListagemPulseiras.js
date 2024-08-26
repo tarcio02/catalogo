@@ -1,33 +1,33 @@
 import CardProduto from "../components/cardProduto";
 import { StyleListagem } from "../globalStyled/style";
 
-function ListagemProduto () {
+function ListagemPulseiras() {
     const produtos = [
         {
-            image: 'https://cdn.pixabay.com/photo/2019/11/24/14/15/diamond-4649510_1280.png',
+            image: 'https://cdn.pixabay.com/photo/2016/11/11/17/34/diamond-1817291_1280.png',
             id: 1, 
-            nome: 'Anel de casamento', 
+            nome: 'Pulseira de casamento', 
             preco: '1.997,99',
-            descricao: 'Anel de ouro 0,3mm de espessura e 4g de peso'
+            descricao: 'Pulseira de ouro 0,3mm de espessura e 4g de peso'
         },
         {
-            image: 'https://cdn.pixabay.com/photo/2019/11/24/14/15/diamond-4649510_1280.png',
+            image: 'https://cdn.pixabay.com/photo/2016/11/11/17/34/diamond-1817291_1280.png',
             id: 2, 
-            nome: 'Anel de ouro', 
+            nome: 'Pulseira de ouro', 
             preco: '5.997,99',
             descricao: 'Corrente de ouro 0,3mm de espessura e 4g de peso'
         },
         {
-            image: 'https://cdn.pixabay.com/photo/2019/11/24/14/15/diamond-4649510_1280.png',
+            image: 'https://cdn.pixabay.com/photo/2016/11/11/17/34/diamond-1817291_1280.png',
             id: 3, 
-            nome: 'Anel de prata', 
+            nome: 'Pulseira de prata', 
             preco: '3.997,99',
             descricao: 'pulseira de ouro 0,3mm de espessura e 4g de peso'
         },
         {
-            image: 'https://cdn.pixabay.com/photo/2019/11/24/14/15/diamond-4649510_1280.png',
+            image: 'https://cdn.pixabay.com/photo/2016/11/11/17/34/diamond-1817291_1280.png',
             id: 4, 
-            nome: 'Anel de compromisso', 
+            nome: 'Pulseira de compromisso', 
             preco: '997,99',
             descricao: 'Brinco de prata 0,3mm de espessura e 4g de peso'
         }
@@ -35,7 +35,7 @@ function ListagemProduto () {
 
     return (
         <StyleListagem>
-            <h2 className="nameSection">Catálogo de Anéis:</h2>
+            <h2 className="nameSection">Catálogo de Pulseiras:</h2>
             <ul className="listagem" >
                 {produtos.map( (produto) => (
                     <li key={produto.id} >
@@ -44,7 +44,6 @@ function ListagemProduto () {
                         nome={produto.nome}
                         preco={produto.preco}
                         descricao={produto.descricao}
-                        id={produto.id}
                         />
                     </li> 
                 ))}
@@ -53,4 +52,4 @@ function ListagemProduto () {
     )
 }
 
-export default ListagemProduto
+export default ListagemPulseiras

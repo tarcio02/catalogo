@@ -9,6 +9,6 @@ export const GlobalStyled = createGlobalStyle`
 }
 
 body{
-    padding: 0 10%;
+    background-color: #fff;
 }
 `
