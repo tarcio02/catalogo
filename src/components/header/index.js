@@ -5,7 +5,8 @@ function Header () {
     return (
         <StyleHeader>
             <div className="container">
-            <h1><span className="title">GW</span> <span className="sub">j<i class="fa-regular fa-gem"></i>ias</span></h1>
+                <h1>Catálogo</h1>
+            {/* <h1><span className="title">GW</span> <span className="sub">j<i class="fa-regular fa-gem"></i>ias</span></h1> */}
             <ul>
                 <li>
                     <NavLink className={({ isActive }) => (isActive ? "active" : "noActive")} to="/">Anéis</NavLink>

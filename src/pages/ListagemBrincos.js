@@ -1,53 +1,64 @@
 import CardProduto from "../components/cardProduto";
 import { StyleListagem } from "../globalStyled/style";
+import React, { useEffect, useState } from 'react';
+
 
 function ListagemBrincos() {
-    const produtos = [
-        {
-            image: 'https://cdn.pixabay.com/photo/2021/08/03/06/47/earrings-6518631_1280.jpg',
-            id: 1, 
-            nome: 'Brincos', 
-            preco: '1.997,99',
-            descricao: 'Anel de ouro 0,3mm de espessura e 4g de peso'
-        },
-        {
-            image: 'https://cdn.pixabay.com/photo/2021/08/03/06/47/earrings-6518631_1280.jpg',
-            id: 2, 
-            nome: 'Brinco de ouro', 
-            preco: '5.997,99',
-            descricao: 'Corrente de ouro 0,3mm de espessura e 4g de peso'
-        },
-        {
-            image: 'https://cdn.pixabay.com/photo/2021/08/03/06/47/earrings-6518631_1280.jpg',
-            id: 3, 
-            nome: 'Brinco de prata', 
-            preco: '3.997,99',
-            descricao: 'pulseira de ouro 0,3mm de espessura e 4g de peso'
-        },
-        {
-            image: 'https://cdn.pixabay.com/photo/2021/08/03/06/47/earrings-6518631_1280.jpg',
-            id: 4, 
-            nome: 'Brinco de compromisso', 
-            preco: '997,99',
-            descricao: 'Brinco de prata 0,3mm de espessura e 4g de peso'
-        }
-    ]
+    const [produtos, setProdutos] = useState([]);
+    const [erro, setErro] = useState(null);
+
+    useEffect(() => {
+        const sheetId = '1HljF1sRUJLsD-309vdNLGfr0J979ZDTWuaCnX7HWRdc'; // ID da sua planilha
+        const range = 'veri!A:D'; // Intervalo desejado (ex: A:A)
+        const apiKey = 'AIzaSyA24K83CHWjpfqemHLOgv6OtV2sFdT16WA'
+
+        const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
+
+        fetch(url)
+            .then((res) => {
+                if (!res.ok) {
+                throw new Error(`Erro HTTP ${res.status}`);
+                }
+                return res.json();
+            })
+            .then((data) => {
+                const linhas = data.values || [];
+
+                // Transforma cada linha em um objeto com nome, descrição e preço
+                const produtosTratados = linhas.map((linha, index) => ({
+                id: index,
+                nome: linha[0] || '',
+                descricao: linha[1] || '',
+                preco: linha[2] || '',
+                imagem: linha[3] || '',
+                }));
+
+                setProdutos(produtosTratados);
+            })
+            .catch((err) => {
+                console.error('Erro ao buscar dados da planilha:', err);
+                setErro(err.message);
+            });
+        }, []);
+
+    
 
     return (
         <StyleListagem>
             <h2 className="nameSection">Catálogo de Brincos:</h2>
-            <ul className="listagem" >
-                {produtos.map( (produto) => (
-                    <li key={produto.id} >
+                {erro && <p style={{ color: 'red' }}>Erro: {erro}</p>}
+                <ul className="listagem">
+                    {produtos.map((produto) => (
+                    <li key={produto.id}>
                         <CardProduto
-                        image={produto.image}
+                        image={produto.imagem}
                         nome={produto.nome}
                         preco={produto.preco}
                         descricao={produto.descricao}
                         />
-                    </li> 
-                ))}
-            </ul>
+                    </li>
+                    ))}
+                </ul>
         </StyleListagem>
     )
 }
